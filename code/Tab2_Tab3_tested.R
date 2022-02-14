@@ -1,10 +1,13 @@
+# Noé J Nava
+# Research Agricultural Economist
+# USDA Economic Research Service
+# noe.nava@usda.gov
+# February 14, 2022
+# https://noejn2.github.io/
+
 rm(list = ls())
 options(scien = 9999)
 library(tidyverse)
-
-# Noé J Nava
-# noejnava2@gmail.com
-# 07/22/2021
 
 # Script to approximate elasticities for QUAIDS demand system
 # following the work of Dong, Gould, Kaiser (2004)
@@ -16,7 +19,7 @@ library(tidyverse)
 
 # Set-up -----
 # Estimates from GAUSS estimations are storage in params
-load("output/gauss_output_new_v2/params.RData")
+load("TabC1_params.RData")
 
 # Mapping latent shares to observed shares - function
 # This is equation (22) in Nava and Dong (2022)
@@ -96,8 +99,7 @@ reps <- 1000000
 delta <- 1e-5
 
 # Using main data for our analysis --- simulation is based on mean variables
-#ssb_data_2018 <- readstata13::read.dta13(file = 'data/ssb_data_2018_v2.dta')
-ssb_data_2018 <- read_csv(file = 'data/ssb_dataset_2018_v2.csv')
+ssb_data_2018 <- read_csv(file = 'data/ssb_dataset_2018.csv')
 
 #prices --- 
 mulnp1 <- mean(ssb_data_2018$lnp_ssb)
@@ -454,7 +456,7 @@ for (p in 1:length(varmu)) {
 }
 
 # VC4 comes from the GAUSS and it is the variance-covariance matrix
-cov <- readxl::read_xlsx(path = 'output/gauss_output_new/VC4.xlsx', col_names = FALSE)
+cov <- readxl::read_xlsx(path = 'output/TabC1_vcov.xlsx', col_names = FALSE)
 cov <- as.matrix(cov[1:27,1:27])
 
 etas1a <- as.matrix(etas1)
@@ -483,10 +485,10 @@ for(o in 1:4) {
 }
 output
 
-saveRDS(output, file = 'output/gauss_output_new_v2/etas.rds')
+saveRDS(output, file = 'output/etas.rds')
 output <- as.data.frame(output)
 output <- cbind.data.frame(vars, output)
-readr::write_csv(output, file = 'output/gauss_output_new_v2/etas.csv')
+readr::write_csv(output, file = 'output/etas.csv')
 
 #############################
 ####### Hicksian Etas #######
@@ -548,7 +550,7 @@ for(o in 1:4) {
 }
 output_hic
 
-saveRDS(output_hic, file = 'output/gauss_output_new_v2/etas_hic.rds')
+saveRDS(output_hic, file = 'output/etas_hic.rds')
 output_hic <- as.data.frame(output_hic)
 output_hic <- cbind.data.frame(output_hic, output)
-readr::write_csv(output_hic, file = 'output/gauss_output_new_v2/etas_hic.csv')
+readr::write_csv(output_hic, file = 'output/etas_hic.csv')

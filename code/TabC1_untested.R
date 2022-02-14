@@ -2,14 +2,14 @@
 # Research Agricultural Economist
 # USDA Economic Research Service
 # noe.nava@usda.gov
-# January 16, 2022
+# February 14, 2022
 # https://noejn2.github.io/
 rm(list = ls())
 
 # Notes:
-# Recommended citation: 
+# Consult citation in journal (JAAEA): 
 # Nava and Dong (2022) The impact of taxing sugary soft-beverages: A censored 
-# QUAI demand system approach. Working paper.
+# QUAI demand system approach. Journal of the Agricultural and Applied Economics Association.
 
 # Script estimates the parameters of a censored QUAI demand system by parametrizing 
 # a truncated log-likelihood. There are different cases as explained in the manuscript
@@ -23,20 +23,15 @@ rm(list = ls())
 # Therefore, the log-likelihood function, quaids.loglike(), loops over every single
 # household and then calculates the log-likelihood contribution. This is not the 
 # case for whenever the household buys all of the goods. This loop, however, is
-# problematic since it requires a lot of computational power. It is recommended 
-# to test the code with a random sample of the observations or find a better way
-# to improve the function. The problem, however, may lay on the calculation of the
-# Jacobian. Diansheng Dong's code has the same loop and the calculation of the
-# Jacobian is not a problem.
+# problematic since it requires a lot of computational power.
 
-# There are some optimization options that you can play around. I recommend, again,
-# to use a random subset of the data. Also, you can play around with the step. It
-# could be the case that in a random subset of data, the step is large enough that
-# the diagonal elements of the vcov matrix become negative. In addition, be aware
-# of not using zeros for the initial values since this practice will cause problems.
-# As for the diagonal elements of the sigma, also do not use zeros.
+# There are some optimization options that you can play around. You can play around 
+# with the step. It could be the case that in a random subset of data, the step is large 
+# enough that the diagonal elements of the vcov matrix become negative. In addition, be # aware of not using zeros for the initial values since this practice will cause
+# problems. As for the diagonal elements of the sigma, also do not use zeros.
 
 # Another recommendation: Simplify the code a bit further if possible.
+# Contact authors if succesfully done.
 
 library(mvtnorm)
 library(tidyverse)
@@ -56,7 +51,7 @@ outdir     <- 'R log-like studies/output/'
 genesis    <- Sys.time()
 
 # Using the dataset
-data <- read_csv(file = 'data/ssb_dataset_2018_v2.csv')
+data <- read_csv(file = 'data/ssb_dataset_2018.csv')
 data <- na.omit(data)
 # Renaming for simplicity
 data <- data %>%
