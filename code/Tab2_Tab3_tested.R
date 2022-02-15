@@ -19,7 +19,7 @@ library(tidyverse)
 
 # Set-up -----
 # Estimates from GAUSS estimations are storage in params
-load("TabC1_params.RData")
+load("output/TabC1_params.RData")
 
 # Mapping latent shares to observed shares - function
 # This is equation (22) in Nava and Dong (2022)

@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+output/etas.csv
+output/etas.rds
+output/etas_hic.csv
+output/etas_hic.rds
+
+data/ssb_dataset_2018_v2.dat
+data/ssb_dataset_2018_v2.dht
