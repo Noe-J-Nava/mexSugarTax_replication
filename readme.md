@@ -12,11 +12,13 @@ There are two approaches to estimate the parameters in `Equation 9` and `Equatio
 
 The second approach is *untested*. What it means is that we cannot guarantee the approach replicates the results in our paper since R has computational limitations. The script is `code/TabC1_untested.R` and uses the dataset `data/ssb_dataset_2018.csv`. The computational limitation is related to the estimation of the (n x p) Jacobian matrix required for our algorithm to find the solution. We were unable to check if our R script had any bug since our algorithm never converged. Despite that, we prepared this R script for those interested in the computational task behind our paper but do not know how to read Gauss scripts.
 
+I am testing Julia language at the moment, but I was told the language can address the computational task.
+
 ### `Table 2` and `Table 3`:
 
 Our numerical approach to the calculation of our demand elasticities is described in `Appendix E`. The R script is `code/Tab2_Tab3_tested.R` and uses output from the estimation of `code/TabC1_tested.gss`. Because I expect complications regarding the estimation of the parameters and the variance-covariance matrix depicted in `Table C.1`, the script is directed to use `TabC1_params.Rdata` for the parameters and `TabC1_vcov.xlsx` for the variance-covariance matrix.
 
 **How to cite this article:**
 
-Nava, Noé J., and Diansheng Dong. 2022. "The impact of taxing sugary-sweetened beverages in México: A censored QUAI demand system approach." *Journal of Agricultural and Applied Economics Association*, 0-0: https://doi.org/10.1002/jaa2.6
+Nava, Noé J., and Diansheng Dong. 2022. "The impact of taxing sugary-sweetened beverages in México: A censored QUAI demand system approach." *Journal of Agricultural and Applied Economics Association*, 1(1):1-23: https://doi.org/10.1002/jaa2.6
 
