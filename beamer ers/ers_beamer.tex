@@ -1,0 +1,382 @@
+% ERS Blue Leaf Template
+% Benoit A. Delbecq 7/13/2012
+\documentclass[hyperref={pdfpagelabels=false},10pt,aspectratio=169]{beamer}
+
+%%%%% Preamble %%%%%
+% Packages
+\usepackage{graphicx, float}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{bibentry}
+\usepackage{rotating}
+\usepackage{colortbl}
+\usepackage{wrapfig,
+			color,
+			%hyperref,
+			graphics,
+          	amsmath,
+			pifont,
+			enumitem}
+\usepackage{ragged2e}
+\usepackage{array}         % needed for \arraybackslash
+\graphicspath{{C:/Users/noe.nava/OneDrive - USDA/Drive/Mumford Works/mexican_sugar_tax/output/figures/}}
+\usepackage{adjustbox}     % for \adjincludegraphics
+\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+\usepackage{mathtools}
+%\usepackage{palatino}      % use palatino as the default font
+
+% ERS formatting
+\setbeamertemplate{table}[numbered]
+\bibliographystyle{abbrvnat}
+\usetheme{default}
+\definecolor{ERS_blue}{RGB}{0,71,130}         % same blue as the leaf from the background
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}[triangle]
+\setbeamertemplate{enumerate item}[default]
+%\setbeamertemplate{navigation symbols}{}
+%\useoutertheme{infolines}
+%\useoutertheme[subsection=false]{smoothbars}   % disabled for now
+\usefonttheme{default}  % use serif font
+\usebackgroundtemplate{\includegraphics[width=\paperwidth, height=.996\paperheight]{erspowerpointbackground2.eps}}
+\setbeamercolor{structure}{fg=ERS_blue}
+\setbeamercolor{author in head/foot}{fg=white,bg=ERS_blue}
+
+
+% Title page 
+\title[Censored QUAI Demand System]{The impact of taxing sugary soft beverages in México: A censored QUAI demand system approach}
+\author[Nava \& Dong]{Noé J Nava\inst{1}, and Diansheng Dong\inst{1}}
+
+\institute{
+  \inst{1} Economic Research Service, USDA \\
+}
+
+\date[August 02, 2022]{AAEA 2022: Identification in demand estimations\\ 
+\justify \footnotesize  The findings and conclusions in this article are those of the authors and should not be construed to represent any official USDA or U.S. Government determination or policy. This research was supported in part by the USDA, Economic Research Service, and the Farm Foundation. Our analysis is derived from work we performed as part of the Farm Foundation Scholars program.}
+
+%%% Title page %%%%%
+\setbeamertemplate{frametitle}
+{
+%\hskip1.7cm	%adjust horizontal position of frame title
+\begin{beamercolorbox}{frametitle}
+\usebeamerfont{frametitle}\insertframetitle
+%\vbox{}\vskip-1ex % adjusts vertical position of frame title
+\end{beamercolorbox}
+}
+
+%%% customize itemize to allow for more than 3 sublevlels
+\renewlist{itemize}{itemize}{5} %
+\setlist[1]{labelindent=2ex} % set indent of first bullet
+\setlist{leftmargin=*} % align each bullet on the upper level text
+%\setlist{leftmargin=10pt} %alternatively, indents each bullet by 10pt
+\setlist[itemize,1]{label=\color{ERS_blue}\footnotesize\textbullet}
+%\setlist[itemize,1]{label=\color{ERS_blue}\footnotesize\textbullet} % change bullet color
+\setlist[itemize,2]{label=\color{ERS_blue}\scriptsize\textendash}
+\setlist[itemize,3]{label=\color{ERS_blue}\scriptsize\textbullet}
+\setlist[itemize,4]{label=\color{ERS_blue}\tiny\textendash}
+\setlist[itemize,5]{label=\color{ERS_blue}\tiny{$\gg$}}
+
+%%% Customize headline. Comment everything out if no headline.
+\setbeamertemplate{headline}{%
+	\leavevmode%
+	\begin{beamercolorbox}[wd=.22\paperwidth,ht=2.5ex,dp=1.125ex,center]{structure}%
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[wd=.38621\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.2cm,rightskip=.2cm plus1fil,center]{title in head/foot}%
+	\usebeamerfont{title in head/foot}\insertsection \hfill \insertsubsection %\insertshortauthor %section
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[wd=.38621\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.2cm,rightskip=.2cm plus1fil,center]{author in head/foot}%
+	\usebeamerfont{author in head/foot}\insertshortdate %subsection
+	\end{beamercolorbox}%
+\vskip2.8pt%
+}
+%%% Customize footline. Comment everything out if no footline.
+\defbeamertemplate*{footline}{shadow theme}{%
+	\leavevmode%
+	\hbox{\begin{beamercolorbox}[leftskip=0.5cm]{author in head/foot}%
+	\usebeamerfont{author in head/foot}\insertframenumber\,/\,\inserttotalframenumber
+	\end{beamercolorbox}%
+
+	%\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+	% \usebeamerfont{title in head/foot}\insertshorttitle%
+	%\end{beamercolorbox}
+}%
+\vskip0pt%
+}
+
+% defines a customized beamerboxesrounded environment (use \begin{colorblock{title}...\end{colorblock}}
+\setbeamercolor{uppercol}{fg=white,bg=ERS_blue}
+\setbeamercolor{lowercol}{fg=black,bg=ERS_blue!20}
+\setbeamercolor{coloredboxstuff}{fg=black,bg=white!10!white}
+\newenvironment{colorblock}{
+\begin{beamerboxesrounded}[upper=uppercol,lower=lowercol,shadow=true]}
+{\end{beamerboxesrounded}}
+\definecolor{mycolor}{RGB}{255,255,0}
+
+\begin{document}{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=.995\paperheight]{erspowerpointbackground_title.eps}}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+}
+%%%%% End preamble %%%%%
+%%%%% Begin fun part %%%%
+\section[Sugary Soft Beverages consumption in México]{Introduction} 
+\subsection[Introduction]{Sugary Soft Beverages sin tax in México}
+
+\frame{% The Casales family
+\frametitle{The Casales family}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=8.0cm]{casales_family.jpeg}
+	\begin{beamercolorbox}{coloredboxstuff}
+		\caption{\footnotesize The Casales family of Cuernavaca. Food expenditure for one week is \$93 dollars and about \$12 is spent on Sugary Soft Beverages (SSB). Stated preferences:  pizza, pasta, and chicken. Revealed preferences: SSB.}
+	\end{beamercolorbox}
+	\end{figure}
+
+}
+
+\frame{% SSB consumption in México
+\frametitle{Sugary Soft Beverages consumption in México}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=9cm, height=5.5cm]{inpc_SSB.png}
+
+	\begin{beamercolorbox}{coloredboxstuff}
+	\caption{\footnotesize Sugary Soft Beverages (SSB) price index across all the economic regions in México over the last decade. A one peso per litter of SSB was proposed in 2012 and was successully implemented on the first day of 2014.}
+	\end{beamercolorbox}
+\end{figure}
+
+}
+
+\subsection[Lit. Review]{Literature Review}
+\frame{% Literature review on 
+\frametitle{Non-demand estimation approaches to study the impact of the Sugary Soft Beverages}
+	
+	\begin{itemize}
+		\item Passed-through effect:
+			\begin{itemize}
+				\item Colchero \textit{et al.,} (2015b): \textbf{Tax was almost completely absorbed by consumers}.
+				\item Campos-Vázquez and Medina-Cortina (2019): After accounting for competition at the supermarket level, the consumer experienced price changes \textbf{between 24\% and 152\% pesos} of the tax value.
+			\end{itemize}
+		\item SSB sales effect:
+			\begin{itemize}
+				\item Colchero \textit{et al.,} (2016): \textbf{7.3\% decrease} in per capital sales of SSB.
+			\end{itemize}
+		\item Caloric intake decrease:
+			\begin{itemize}
+				\item Aguilar, Gutierrez, and Seira (2021): \textbf{2.7\% decrease} in caloric intake.
+			\end{itemize}
+	\end{itemize}
+
+}
+
+\frame{% Caveats
+\frametitle{Caveats:}
+	
+	\begin{itemize}
+		\item Passed-through and sales studies suggest a clear decline in the consumption of SSB;
+			\begin{itemize}
+				\item However, \textbf{substitution could take place} for caloric-intensive goods.
+			\end{itemize}
+		\item Causal impact of the tax on caloric intake suggests a decline on obesity;
+			\begin{itemize}
+				\item However, we do not understand the \textbf{mechanisms} (unintended consequences):
+				\begin{itemize}
+					\item Budget effect.
+					\item Substitution and complementarity effects.
+				\end{itemize}
+			\end{itemize}
+	\end{itemize}
+
+}
+
+\frame{% Literature review on SSB demand estimations in Latin-america
+	
+	\frametitle{Demand estimation approaches in Latin America}
+
+	\begin{itemize}
+		\item In México, Colchero, Salgado, and Unar-Munguía (2015a): Own-price elasticity at \textbf{-1.11}.
+		\item In Colombia, Caro \textit{et al.,} (2017): Own-price elasticity at \textbf{-1.61}.
+		\item In Chile, Guerrero-López, Unar-Munguía, and Colchero (2017): Own-price elasticity at \textbf{-1.37}.
+		\item All SSB demand estimation studies in Latin-america have at least two of the following empirical shortcomings:
+				\begin{itemize}
+					\item[1] \textbf{Unit-value endogeneity} (Deaton, 1998; Cox and Wohlgenant, 1986).
+					\item[2] \textbf{Expediture endogeneity} (LeFrance, 1993).
+					\item[3] \textbf{Corner solutions treatment} (Dong, Gould, and Kaiser, 2004; Enríquez and Echevarría, 2016).
+				\end{itemize}
+	\end{itemize}
+
+}
+
+\frame{% A Corner solution (censorship) problem
+	\label{loglike_ours}
+
+	\frametitle{A Corner solution (censorship) problem}
+
+	\begin{tabular}{cl}  
+	\begin{tabular}{c}
+		\includegraphics[height=4cm, width=5cm]{censorship_example.png}
+	\end{tabular}
+	& 
+	\begin{tabular}{l}
+		%\footnotesize
+		\parbox{0.5\linewidth}{%  change the parbox width as appropiate
+			Our Amemiya-Tobin correction starts by:
+			\begin{equation}
+			S^*_i \in \mathbb{R}^1 \mapsto S^*_i \in [0,1]
+			\nonumber
+			\end{equation}
+		where $S^*_i$ is the latent share and $S_i$ is the observed share.
+		
+		Wales and Woodland (1983):
+		
+		\begin{equation}
+			S_i = 
+			\begin{cases}
+				\frac{S^*_i}{\sum_{j \in \Psi} S^*_j}, & S^*_i > 0,\\
+				0,                                    & S^*_i \leq 0
+			\end{cases} \; \; \; 
+			i = 1, ..., 4
+			\nonumber
+		\end{equation}
+		where $\Psi$ is the set of all positive latent shares.
+		}
+	\end{tabular}  \\
+\end{tabular}
+
+}
+
+\frame{% Preview of results
+\frametitle{Preview of results}
+	
+	\begin{itemize}
+		\item Own-price elasticity with respect to SSB is:
+		\begin{itemize}
+			\item \textbf{-0.83} for the year of 2014,
+			\item \textbf{-0.98} for the year of 2016, 
+			\item \textbf{-0.95} for the year of 2018.
+		\end{itemize}
+		\item Failure to account for unit-value endogeneity carries upward bias for own-price elasticities.
+		\item Milk is a substitute good for SSB, and juice is a complement good for SSB.
+		\item Education is a major determinant to reduce the consumption of SSB.
+		  
+	\end{itemize}
+
+}
+
+\section{Empirical strategy}
+\subsection[QUAI Demand System]{QUAI Demand System}
+
+\frame{% Banks, Blundell and Lewbel (1997)'s QUAI Demand System
+	
+	\label{QUAIDS}
+
+	\frametitle{Banks, Blundell and Lewbel (1997)'s QUAI Demand System}
+	%\footnotesize
+	
+\begin{equation}
+	U_1 = \alpha_1 + \mathbf{\theta'_{1}z}  + \sum^{M}_{j = 1} \gamma_{1j} \ln p_j + \beta_1\ln \Big\{ \frac{w}{a(\mathbf{p})} \Big\} + \frac{\lambda_1}{b(\mathbf{p})} \left[ \ln \Big\{ \frac{w}{a(\mathbf{p})} \Big\}\right]^2_{,}
+	\nonumber
+\end{equation}
+
+\begin{equation}
+	\vdots
+	\nonumber
+\end{equation}
+	
+\begin{equation}
+	U_M = \underbrace{\alpha_M + \mathbf{\theta'_{M}z}  + \sum^{M}_{j = 1} \gamma_{Mj} \ln p_j + \beta_M\ln \Big\{ \frac{w}{a(\mathbf{p})} \Big\}}_\text{AID system} + \underbrace{\frac{\lambda_M}{b(\mathbf{p})} \left[ \ln \Big\{ \frac{w}{a(\mathbf{p})} \Big\}\right]^2_{.}}_\text{QUAID system}
+	\nonumber
+\end{equation}
+
+\begin{beamercolorbox}{coloredboxstuff}
+
+where:
+\begin{itemize}
+	\fontsize{6pt}{7.2}\selectfont
+	\item $\mathbf{z}$ and $w$ are a vector of demographic characteristics and a total budget, respectively.
+	\item $a(\mathbf{p})$ and $b(\mathbf{p})$ are priced aggregators.
+	\item $p_i$ is a vector of prices $\forall i$.
+	\item The dependent variable is defined as $U_i = \frac{p_i q_i}{w}$ $\forall i$ where $q_i$ is quantity . 
+	
+	\item The coefficients are restricted such that: \\
+		$\sum^{M}_{i = 1} \alpha_i = 1$, $\sum^{M}_{i = 1} \beta_i = 0$, $\sum^{M}_{j = 1} \gamma_{ij} = 0$, $\sum^{M}_{i = 1} \lambda_i = 0$, $\sum^{M}_{i = 1} \theta_i = 0$, and $\gamma_{ij} = \gamma_{ji}$  $\forall i,j$.
+\end{itemize}
+
+\end{beamercolorbox}
+
+}
+
+\frame{% Engel and Cournot aggregations
+
+	%\footnotesize
+	\frametitle{Cournot and Engel aggregations}
+
+The budget restriction is given by:
+	\begin{equation}
+		p_1 q_1 + \hdots + p_M q_M = w
+		\nonumber 
+	\end{equation}
+
+The Cournot aggregation is given by:
+	\begin{equation}
+		U_1 \eta_{1j} + \hdots + U_M \eta_{Mj} = - U_j
+		\nonumber
+	\end{equation}
+
+The Engel aggregation is given by:
+	\begin{equation}
+		U_1 \eta_1 + \hdots + U_M \eta_M = 1
+		\nonumber
+	\end{equation}
+
+\begin{beamercolorbox}{coloredboxstuff}
+where:
+\begin{itemize}
+	\item $\eta_i$ is a budget elasticity.
+	\item $\eta_{mj}$ is a price elasticity.
+\end{itemize}
+\end{beamercolorbox}
+
+}
+
+\frame{% Engel and Cournot aggregations
+
+	%\footnotesize
+	\frametitle{The Slutsky Equation}
+
+Slutsky equation:
+	\begin{equation}
+		\frac{\partial h_i}{\partial p_j} = \frac{\partial x_i}{\partial p_j} + \frac{\partial x_i}{\partial w} x_j
+		\nonumber 
+	\end{equation}
+
+Slutsky equation in elasticities:
+\begin{equation}
+	\eta^c_{ij} = \eta_{ij} + \eta_i U_j
+	\nonumber 
+\end{equation}
+
+\begin{beamercolorbox}{coloredboxstuff}
+	where:
+	\begin{itemize}
+		\item $h_i$ is the Hicksian demand.
+		\item $\eta^c_{ij}$ is the Hicksian elasticity.
+	\end{itemize}
+\end{beamercolorbox}
+}
+
+\frame{
+
+\centering
+Thanks!
+
+}
+
+\end{document}
+%end
