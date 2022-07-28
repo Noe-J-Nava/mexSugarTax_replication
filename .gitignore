@@ -10,3 +10,12 @@ output/etas_hic.rds
 
 data/ssb_dataset_2018_v2.dat
 data/ssb_dataset_2018_v2.dht
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.output
+*.snm
+*.synctex.gz
+*.toc
